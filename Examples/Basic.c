@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "ppm_edge.h"
+#include "Ppm_edge.h"
 
 int main(void)
 {
