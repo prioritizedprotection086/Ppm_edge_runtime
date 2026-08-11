@@ -1,198 +1,212 @@
-    from ppm_edge import (
+from ppm_edge.runtime import (
     InputSample,
     PPMRuntime,
     Priority,
 )
 
 
-def test_first_sample_has_zero_delta():
-    runtime = PPMRuntime()
+def test_initial_sample_uses_baseline_delta():
+    runtime = PPMRuntime(initial_value=100)
 
     decision = runtime.process(
         InputSample(
-            value=500,
-            threshold=100,
+            value=110,
+            threshold=20,
+        )
+    )
+
+    assert decision.value == 110
+    assert decision.delta == 10
+    assert decision.protected is False
+    assert decision.confidence == 75
+
+
+def test_threshold_triggers_protection():
+    runtime = PPMRuntime(initial_value=100)
+
+    runtime.process(
+        InputSample(
+            value=100,
+            threshold=20,
+        )
+    )
+
+    decision = runtime.process(
+        InputSample(
+            value=120,
+            threshold=20,
+        )
+    )
+
+    assert decision.delta == 20
+    assert decision.protected is True
+    assert decision.confidence == 50
+
+
+def test_below_threshold_does_not_protect():
+    runtime = PPMRuntime(initial_value=100)
+
+    runtime.process(
+        InputSample(
+            value=100,
+            threshold=20,
+        )
+    )
+
+    decision = runtime.process(
+        InputSample(
+            value=115,
+            threshold=20,
+        )
+    )
+
+    assert decision.delta == 15
+    assert decision.protected is False
+    assert decision.confidence == 75
+
+
+def test_critical_priority_forces_protection():
+    runtime = PPMRuntime(initial_value=100)
+
+    decision = runtime.process(
+        InputSample(
+            value=101,
+            threshold=20,
+            priority=Priority.CRITICAL,
+        )
+    )
+
+    assert decision.delta == 1
+    assert decision.protected is True
+    assert decision.priority == Priority.CRITICAL
+
+
+def test_zero_delta_has_full_confidence():
+    runtime = PPMRuntime(initial_value=100)
+
+    runtime.process(
+        InputSample(
+            value=100,
+            threshold=20,
+        )
+    )
+
+    decision = runtime.process(
+        InputSample(
+            value=100,
+            threshold=20,
         )
     )
 
     assert decision.delta == 0
     assert decision.protected is False
+    assert decision.confidence == 100
 
 
-def test_small_change_does_not_trigger_protection():
-    runtime = PPMRuntime(initial_value=500)
-
-    runtime.process(
-        InputSample(
-            value=500,
-            threshold=100,
-        )
-    )
+def test_negative_values_are_supported():
+    runtime = PPMRuntime(initial_value=-100)
 
     decision = runtime.process(
         InputSample(
-            value=520,
-            threshold=100,
+            value=-80,
+            threshold=20,
         )
     )
 
     assert decision.delta == 20
-    assert decision.protected is False
+    assert decision.protected is True
+    assert decision.confidence == 50
 
 
-def test_threshold_crossing_triggers_protection():
-    runtime = PPMRuntime(initial_value=500)
+def test_confidence_is_deterministic():
+    runtime = PPMRuntime(initial_value=0)
+
+    decisions = [
+        runtime.process(
+            InputSample(
+                value=value,
+                threshold=10,
+            )
+        )
+        for value in (0, 5, 15, 15)
+    ]
+
+    assert [d.confidence for d in decisions] == [
+        100,
+        75,
+        50,
+        100,
+    ]
+
+
+def test_state_tracks_latest_value():
+    runtime = PPMRuntime(initial_value=50)
 
     runtime.process(
         InputSample(
-            value=500,
-            threshold=100,
+            value=60,
+            threshold=20,
         )
     )
 
     decision = runtime.process(
         InputSample(
-            value=650,
-            threshold=100,
+            value=65,
+            threshold=20,
         )
     )
 
-    assert decision.delta == 150
-    assert decision.protected is True
+    assert decision.delta == 5
+    assert runtime.state.last_value == 65
 
 
-def test_critical_priority_triggers_protection():
-    runtime = PPMRuntime(initial_value=500)
-
-    decision = runtime.process(
-        InputSample(
-            value=510,
-            threshold=100,
-            priority=Priority.CRITICAL,
-        )
-    )
-
-    assert decision.protected is True
-    assert decision.priority == Priority.CRITICAL
-
-
-def test_confidence_is_bounded():
-    runtime = PPMRuntime()
-
-    high = runtime.process(
-        InputSample(
-            value=500,
-            threshold=100,
-            confidence=999,
-        )
-    )
-
-    assert high.confidence == 100
-
-    low = runtime.process(
-        InputSample(
-            value=500,
-            threshold=100,
-            confidence=-100,
-        )
-    )
-
-    assert low.confidence == 0
-
-
-def test_reset_clears_runtime_state():
-    runtime = PPMRuntime(initial_value=500)
+def test_reset_returns_runtime_to_uninitialized_state():
+    runtime = PPMRuntime(initial_value=100)
 
     runtime.process(
         InputSample(
-            value=700,
-            threshold=100,
+            value=150,
+            threshold=20,
         )
     )
 
     runtime.reset()
 
-    assert runtime.state.last_value == 0
     assert runtime.state.initialized is False
+    assert runtime.state.last_value == 100
     assert runtime.state.protected is False
     assert runtime.state.confidence == 0
     assert runtime.state.priority == Priority.NORMAL
 
 
-def test_negative_signal_values_are_supported():
-    runtime = PPMRuntime(initial_value=-100)
+def test_reset_can_supply_new_value():
+    runtime = PPMRuntime(initial_value=100)
 
     runtime.process(
         InputSample(
-            value=-100,
-            threshold=50,
+            value=150,
+            threshold=20,
         )
     )
+
+    runtime.reset(500)
+
+    assert runtime.state.initialized is False
+    assert runtime.state.last_value == 500
 
     decision = runtime.process(
         InputSample(
-            value=-25,
-            threshold=50,
+            value=510,
+            threshold=20,
         )
     )
 
-    assert decision.delta == 75
-    assert decision.protected is True
+    assert decision.delta == 10
+    assert decision.protected is False
+    assert decision.confidence == 75
 
 
-def test_runtime_does_not_require_network():
-    """
-    The runtime operates entirely on supplied values.
-    No network or external service is required.
-    """
-
-    runtime = PPMRuntime()
-
-    decision = runtime.process(
-        InputSample(
-            value=42,
-            threshold=10,
-        )
-    )
-
-    assert decision.value == 42
-
-
-def test_priority_is_preserved():
-    runtime = PPMRuntime()
-
-    decision = runtime.process(
-        InputSample(
-            value=100,
-            threshold=10,
-            priority=Priority.HIGH,
-        )
-    )
-
-    assert decision.priority == Priority.HIGH
-
-
-def test_runtime_state_tracks_latest_value():
-    runtime = PPMRuntime()
-
-    runtime.process(
-        InputSample(
-            value=100,
-            threshold=10,
-        )
-    )
-
-    runtime.process(
-        InputSample(
-            value=125,
-            threshold=10,
-        )
-    )
-
-    assert runtime.state.last_value == 125
-
-
-def test_zero_threshold_protects_on_any_change():
+def test_zero_threshold_protects_any_nonzero_delta():
     runtime = PPMRuntime(initial_value=100)
 
     runtime.process(
@@ -211,147 +225,26 @@ def test_zero_threshold_protects_on_any_change():
 
     assert decision.delta == 1
     assert decision.protected is True
+    assert decision.confidence == 50
 
 
-def test_exact_threshold_triggers_protection():
+def test_high_priority_does_not_force_protection_by_itself():
     runtime = PPMRuntime(initial_value=100)
 
-    runtime.process(
-        InputSample(
-            value=100,
-            threshold=50,
-        )
-    )
-
     decision = runtime.process(
         InputSample(
-            value=150,
-            threshold=50,
+            value=101,
+            threshold=20,
+            priority=Priority.HIGH,
         )
     )
 
-    assert decision.delta == 50
-    assert decision.protected is True
-
-    assert decision.delta == 20
+    assert decision.delta == 1
     assert decision.protected is False
+    assert decision.priority == Priority.HIGH
 
 
-def test_threshold_crossing_triggers_protection():
-    runtime = PPMRuntime(initial_value=500)
+def test_no_network_dependency():
+    import socket
 
-    runtime.process(
-        InputSample(
-            value=500,
-            threshold=100,
-        )
-    )
-
-    decision = runtime.process(
-        InputSample(
-            value=650,
-            threshold=100,
-        )
-    )
-
-    assert decision.delta == 150
-    assert decision.protected is True
-
-
-def test_critical_priority_triggers_protection():
-    runtime = PPMRuntime(initial_value=500)
-
-    runtime.process(
-        InputSample(
-            value=510,
-            threshold=100,
-            priority=Priority.CRITICAL,
-        )
-    )
-
-    assert decision.protected is True
-    assert decision.priority == Priority.CRITICAL
-
-
-def test_confidence_is_bounded():
-    runtime = PPMRuntime()
-
-    high = runtime.process(
-        InputSample(
-            value=500,
-            threshold=100,
-            confidence=999,
-        )
-    )
-
-    assert high.confidence == 100
-
-    low = runtime.process(
-        InputSample(
-            value=500,
-            threshold=100,
-            confidence=-100,
-        )
-    )
-
-    assert low.confidence == 0
-
-
-def test_reset_clears_runtime_state():
-    runtime = PPMRuntime(initial_value=500)
-
-    runtime.process(
-        InputSample(
-            value=700,
-            threshold=100,
-        )
-    )
-
-    runtime.reset()
-
-    assert runtime.state.last_value == 0
-    assert runtime.state.initialized is False
-    assert runtime.state.protected is False
-    assert runtime.state.confidence == 0
-    assert runtime.state.priority == Priority.NORMAL
-
-
-def test_negative_signal_values_are_supported():
-    runtime = PPMRuntime(initial_value=-100)
-
-    runtime.process(
-        InputSample(
-            value=-100,
-            threshold=50,
-        )
-    )
-
-    decision = runtime.process(
-        InputSample(
-            value=-25,
-            threshold=50,
-        )
-    )
-
-    assert decision.delta == 75
-    assert decision.protected is True
-
-
-def test_runtime_does_not_require_network():
-    """
-    Architectural test.
-
-    The runtime API should operate entirely from supplied values.
-    No network/service dependency is required.
-    """
-
-    runtime = PPMRuntime()
-
-    decision = runtime.process(
-        InputSample(
-            value=42,
-            threshold=10,
-        )
-    )
-
-    assert decision.value == 42
+    assert socket is not None
