@@ -1,28 +1,57 @@
 #include "ppm_edge.h"
 
-static uint16_t absolute_delta(
-    uint16_t a,
-    uint16_t b
+static uint32_t absolute_delta(
+    int32_t a,
+    int32_t b
 ) {
-    return (a > b) ? (a - b) : (b - a);
+    int64_t difference = (int64_t)a - (int64_t)b;
+
+    if (difference < 0) {
+        difference = -difference;
+    }
+
+    if (difference > UINT32_MAX) {
+        return UINT32_MAX;
+    }
+
+    return (uint32_t)difference;
+}
+
+static uint8_t calculate_confidence(
+    uint32_t delta,
+    uint32_t threshold
+) {
+    if (delta == 0U) {
+        return 100U;
+    }
+
+    if (delta < threshold) {
+        return 75U;
+    }
+
+    return 50U;
 }
 
 void ppm_init(
     ppm_runtime_t *runtime,
-    uint16_t baseline,
-    uint16_t threshold
+    int32_t baseline,
+    int32_t threshold
 ) {
     if (runtime == 0) {
         return;
+    }
+
+    if (threshold < 0) {
+        threshold = 0;
     }
 
     runtime->baseline = baseline;
     runtime->last_value = baseline;
     runtime->threshold = threshold;
 
-    runtime->initialized = 1;
-    runtime->protection = 0;
-    runtime->confidence = 0;
+    runtime->initialized = 0U;
+    runtime->protection = 0U;
+    runtime->confidence = 0U;
     runtime->priority = PPM_PRIORITY_NORMAL;
 }
 
@@ -34,8 +63,9 @@ void ppm_reset(
     }
 
     runtime->last_value = runtime->baseline;
-    runtime->protection = 0;
-    runtime->confidence = 0;
+    runtime->initialized = 0U;
+    runtime->protection = 0U;
+    runtime->confidence = 0U;
     runtime->priority = PPM_PRIORITY_NORMAL;
 }
 
@@ -48,47 +78,34 @@ void ppm_process(
         return;
     }
 
-    if (!runtime->initialized) {
-        ppm_init(
-            runtime,
-            input->baseline,
-            input->threshold
-        );
+    int32_t threshold_value = input->threshold;
+
+    if (threshold_value < 0) {
+        threshold_value = 0;
     }
 
-    uint16_t delta =
-        absolute_delta(input->signal, runtime->last_value);
+    uint32_t threshold = (uint32_t)threshold_value;
 
-    uint8_t protected_mode = 0;
+    uint32_t delta = absolute_delta(
+        input->signal,
+        runtime->last_value
+    );
 
-    /*
-     * Protection is activated when the signal exceeds
-     * the supplied threshold or when the caller explicitly
-     * marks the event as critical.
-     */
-    if (delta >= input->threshold ||
+    uint8_t protected_mode = 0U;
+
+    if (delta >= threshold ||
         input->priority == PPM_PRIORITY_CRITICAL) {
-        protected_mode = 1;
+        protected_mode = 1U;
     }
 
-    /*
-     * Confidence is intentionally bounded.
-     *
-     * This is a deterministic placeholder for the adaptive
-     * policy layer. More sophisticated policy can be added
-     * without changing the public runtime interface.
-     */
-    uint8_t confidence;
-
-    if (delta == 0) {
-        confidence = 100;
-    } else if (delta < input->threshold) {
-        confidence = 75;
-    } else {
-        confidence = 50;
-    }
+    uint8_t confidence = calculate_confidence(
+        delta,
+        threshold
+    );
 
     runtime->last_value = input->signal;
+    runtime->threshold = threshold_value;
+    runtime->initialized = 1U;
     runtime->protection = protected_mode;
     runtime->confidence = confidence;
     runtime->priority = input->priority;
