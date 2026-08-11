@@ -1,4 +1,4 @@
-#include "ppm_edge.h"
+#include "Ppm_edge.h"
 
 static uint32_t absolute_delta(
     int32_t a,
