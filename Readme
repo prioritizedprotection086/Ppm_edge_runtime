@@ -1,0 +1,56 @@
+# PPM Edge Runtime
+
+A deterministic, ultra-low-latency runtime for privacy-preserving adaptive regulation on wearables, edge AI systems, and resource-constrained devices.
+
+## Core idea
+
+PPM Edge Runtime is designed around a simple principle:
+
+> Process sensitive signals locally, make a bounded decision locally, and retain as little information as possible.
+
+The runtime is intended for systems where conventional cloud-based biometric processing creates unnecessary latency, bandwidth, power, storage, or privacy exposure.
+
+## Design goals
+
+- Deterministic execution
+- Ultra-low latency
+- Minimal memory footprint
+- Minimal persistent storage
+- Local-first processing
+- No required cloud connection
+- No required biometric data storage
+- Explicit priority handling
+- Bounded adaptive regulation
+- Suitable for wearable and embedded systems
+- Easy integration with sensors and edge-AI pipelines
+
+## Architecture
+
+```text
+Sensor
+  |
+  v
++----------------------+
+| Signal Input         |
++----------+-----------+
+           |
+           v
++----------------------+
+| PPM Decision Core    |
+|                      |
+| Priority             |
+| Protection           |
+| Adaptation           |
+| Privacy              |
++----------+-----------+
+           |
+           v
++----------------------+
+| Local Runtime Output |
++----------+-----------+
+           |
+           +------> Device / Actuator
+           |
+           +------> Edge AI
+           |
+           +------> Safety Policy
