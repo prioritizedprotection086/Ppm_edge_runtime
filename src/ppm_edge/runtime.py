@@ -6,7 +6,7 @@ can be used for development, testing, simulation, and integration work.
 
 from dataclasses import dataclass
 from enum import IntEnum
-from typing import Optional
+from typing import Optional, Union
 
 
 class Priority(IntEnum):
@@ -49,7 +49,7 @@ class PPMRuntime:
     The caller supplies a derived signal, threshold, and priority.
     """
 
-    __slots__ = ("state",)
+    __slots__ = ("state", "threshold")
 
     def __init__(self, initial_value: int = 0) -> None:
         initial_value = int(initial_value)
@@ -59,6 +59,15 @@ class PPMRuntime:
             last_value=initial_value,
             initialized=False,
         )
+        self.threshold = 0
+
+    def configure(self, threshold: int = 0) -> None:
+        """Configure the runtime with a threshold value.
+        
+        Args:
+            threshold: The protection threshold. Negative values are clamped to 0.
+        """
+        self.threshold = max(0, int(threshold))
 
     def reset(self, value: Optional[int] = None) -> None:
         """Reset runtime state to the supplied value or the baseline."""
@@ -75,11 +84,28 @@ class PPMRuntime:
         self.state.confidence = 0
         self.state.priority = Priority.NORMAL
 
-    def process(self, sample: InputSample) -> Decision:
-        """Process one derived sample using deterministic kernel semantics."""
+    def process(self, sample: Union[InputSample, int]) -> Optional[Decision]:
+        """Process one derived sample using deterministic kernel semantics.
+        
+        Args:
+            sample: Either an InputSample object or an integer value.
+                   If an integer, uses the configured threshold.
+        
+        Returns:
+            Decision object if sample is InputSample, or None if sample is int.
+        """
 
-        value = int(sample.value)
-        threshold = max(0, int(sample.threshold))
+        # Support both InputSample objects and simple integer values
+        if isinstance(sample, int):
+            value = int(sample)
+            threshold = self.threshold
+            priority = Priority.NORMAL
+            return_decision = False
+        else:
+            value = int(sample.value)
+            threshold = max(0, int(sample.threshold))
+            priority = sample.priority
+            return_decision = True
 
         delta = abs(value - self.state.last_value)
 
@@ -87,7 +113,7 @@ class PPMRuntime:
 
         protected = (
             delta >= threshold
-            or sample.priority == Priority.CRITICAL
+            or priority == Priority.CRITICAL
         )
 
         if delta == 0:
@@ -100,12 +126,28 @@ class PPMRuntime:
         self.state.last_value = value
         self.state.protected = protected
         self.state.confidence = confidence
-        self.state.priority = sample.priority
+        self.state.priority = priority
 
-        return Decision(
-            value=value,
-            delta=delta,
-            protected=protected,
-            confidence=confidence,
-            priority=sample.priority,
-        )
+        if return_decision:
+            return Decision(
+                value=value,
+                delta=delta,
+                protected=protected,
+                confidence=confidence,
+                priority=priority,
+            )
+        
+        return None
+
+    # Expose state attributes for test access
+    @property
+    def last_value(self) -> int:
+        return self.state.last_value
+
+    @property
+    def initialized(self) -> bool:
+        return self.state.initialized
+
+    @property
+    def protection(self) -> bool:
+        return self.state.protected
