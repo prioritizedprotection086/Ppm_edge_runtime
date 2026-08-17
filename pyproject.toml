@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ppm-edge-runtime"
+version = "0.1.0"
+description = "Deterministic adaptive regulation runtime for privacy-preserving edge AI and wearables."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "All rights reserved - no license granted." }
+authors = [
+    { name = "Prioritized Protection" }
+]
+keywords = [
+    "edge-ai",
+    "wearables",
+    "embedded",
+    "privacy",
+    "real-time",
+    "deterministic",
+    "adaptive-regulation"
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Embedded Systems",
+    "Topic :: Security"
+]
+
+[project.urls]
+Repository = "https://github.com/prioritizedprotection086/Ppm_edge_runtime"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-ra"
