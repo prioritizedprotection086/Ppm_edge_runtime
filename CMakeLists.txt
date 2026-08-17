@@ -11,18 +11,18 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 
 add_library(
     ppm_edge
-    Src/Ppm_edge.c
+    src/ppm_edge.c
 )
 
 target_include_directories(
     ppm_edge
     PUBLIC
-    ${PROJECT_SOURCE_DIR}/Src
+    ${PROJECT_SOURCE_DIR}/src
 )
 
 add_executable(
     ppm_demo
-    Examples/Basic.c
+    src/examples/basic.c
 )
 
 target_link_libraries(
