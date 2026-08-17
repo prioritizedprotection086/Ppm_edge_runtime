@@ -92,7 +92,7 @@ class PPMRuntime:
                    If an integer, uses the configured threshold.
         
         Returns:
-            Decision object if sample is InputSample, or None if sample is int.
+            Decision object describing the runtime decision for the provided sample.
         """
 
         # Support both InputSample objects and simple integer values
@@ -100,12 +100,10 @@ class PPMRuntime:
             value = int(sample)
             threshold = self.threshold
             priority = Priority.NORMAL
-            return_decision = False
         else:
             value = int(sample.value)
             threshold = max(0, int(sample.threshold))
             priority = sample.priority
-            return_decision = True
 
         delta = abs(value - self.state.last_value)
 
@@ -128,16 +126,15 @@ class PPMRuntime:
         self.state.confidence = confidence
         self.state.priority = priority
 
-        if return_decision:
-            return Decision(
-                value=value,
-                delta=delta,
-                protected=protected,
-                confidence=confidence,
-                priority=priority,
-            )
-        
-        return None
+        # Always return a Decision object so callers (and tests) receive
+        # the computed decision regardless of input sample type.
+        return Decision(
+            value=value,
+            delta=delta,
+            protected=protected,
+            confidence=confidence,
+            priority=priority,
+        )
 
     # Expose state attributes for test access
     @property
