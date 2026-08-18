@@ -1,23 +1,16 @@
-# Research & phase archives (from Drive)
+# Research (harness-only)
 
-Technical research materials related to ppm-edge-runtime, imported from Google Drive.
+Experimental policy, adversarial, and integrity work. **Does not modify the production C/Python kernel.**
 
 ## Layout
 
 | Path | Contents |
 |------|----------|
-| `archives/` | Zipped phase packages + full research archive + chat session data |
-| `phases/` | Phase 9–12 markdown reports and harness results JSON |
-| `harness/` | `ppm_edge_harness.py` experimental harness |
-| `chat/` | Chat session master records |
+| `PHASES.md` | Index of phase status |
+| `phase14/` … `phase19/` | Recent harness phases (B_global, invariants, checkpoints, tokens) |
+| `phases/` | Phase 9–12 reports |
+| `archives/` | Zipped phase packages, full research archive, demo snapshot |
+| `harness/` | Early experimental harness |
+| `chat/` | Session master records |
 
-## Phases (summary)
-
-- **Adversarial policy** phases 1–8 (archives)
-- **Phase 9** — Authority / capability red team
-- **Phase 10** — Boundary stress / budget evasion
-- **Phase 11** — Implementation audit
-- **Phase 12** — Experimental harness design + results
-- **Phase 13** — Formal policy red team (archive)
-
-These are research/validation artifacts, not production runtime code.
+Results are labeled harness-level only unless a mechanism is shown to exist in production.

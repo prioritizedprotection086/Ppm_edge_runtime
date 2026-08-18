@@ -1,18 +1,13 @@
-# Experiment artifacts
+# Experiments
 
-Optimization and validation measurements for ppm-edge-runtime.
+Optimization and validation measurements against the production-shaped Python/C runtime.
 
-## Layout
+| Path | Contents |
+|------|----------|
+| `ppm_edge_combined_variant_experiment_report.md` | NamedTuple + `int()`-removal study |
+| `optimization_raw/` | Before/after for NamedTuple change |
+| `validation_raw/` | Variant benches, cold-start, GC |
+| `runtime_audit/` | Audit report + patches |
+| `cpython_ext/` | C-extension boundary experiment |
 
-- `ppm_edge_combined_variant_experiment_report.md` — main write-up (NamedTuple + int()-removal study)
-- `runtime_audit/` — earlier audit + patches
-- `validation_raw/` — first validation-phase JSON (variants, cold-start, GC)
-- `optimization_raw/` — before/after for the landed NamedTuple change
-- `cpython_ext/` — C-extension boundary experiment
-
-## Status
-
-- **Landed:** `Decision` as `typing.NamedTuple`
-- **Not merged:** removal of per-call `int()` in `process()` — real speedup (~25–38%), blocked on calling-contract (float truncation). See the combined variant report.
-
-No production code changes in this commit.
+Production code changes are only those already merged in `src/` / `Src/`.
