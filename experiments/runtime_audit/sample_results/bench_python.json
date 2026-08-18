@@ -1,0 +1,158 @@
+{
+  "suite": "python",
+  "python_version": "3.12.3 (main, Mar  3 2026, 12:15:18) [GCC 13.3.0]",
+  "iterations": 100000,
+  "warmup": 5000,
+  "seed": 123,
+  "core_latency": {
+    "min_ns": 1583,
+    "mean_ns": 1927.69138,
+    "p50_ns": 1777,
+    "p95_ns": 2636,
+    "p99_ns": 4320,
+    "p999_ns": 24653,
+    "max_ns": 80377,
+    "n": 100000
+  },
+  "warm_vs_cold": {
+    "warm": {
+      "min_ns": 1582,
+      "mean_ns": 2082.3435,
+      "p50_ns": 1766,
+      "p95_ns": 3183,
+      "p99_ns": 3765,
+      "p999_ns": 25558,
+      "max_ns": 1925862,
+      "n": 20000
+    },
+    "cold_start_20_runs": [
+      {
+        "import_ns": 24433272,
+        "init_ns": 4119,
+        "first_call_ns": 10375
+      },
+      {
+        "import_ns": 22804559,
+        "init_ns": 3973,
+        "first_call_ns": 9406
+      },
+      {
+        "import_ns": 22819149,
+        "init_ns": 4074,
+        "first_call_ns": 10119
+      },
+      {
+        "import_ns": 23614301,
+        "init_ns": 3992,
+        "first_call_ns": 10591
+      },
+      {
+        "import_ns": 22567360,
+        "init_ns": 3881,
+        "first_call_ns": 9978
+      },
+      {
+        "import_ns": 24235453,
+        "init_ns": 5185,
+        "first_call_ns": 11239
+      },
+      {
+        "import_ns": 24830341,
+        "init_ns": 4536,
+        "first_call_ns": 10740
+      },
+      {
+        "import_ns": 25063506,
+        "init_ns": 4582,
+        "first_call_ns": 17181
+      },
+      {
+        "import_ns": 22103697,
+        "init_ns": 3748,
+        "first_call_ns": 9372
+      },
+      {
+        "import_ns": 25312733,
+        "init_ns": 4736,
+        "first_call_ns": 10888
+      },
+      {
+        "import_ns": 24507595,
+        "init_ns": 4609,
+        "first_call_ns": 11271
+      },
+      {
+        "import_ns": 21891218,
+        "init_ns": 4492,
+        "first_call_ns": 10150
+      },
+      {
+        "import_ns": 22312645,
+        "init_ns": 3993,
+        "first_call_ns": 10380
+      },
+      {
+        "import_ns": 22109662,
+        "init_ns": 3900,
+        "first_call_ns": 9697
+      },
+      {
+        "import_ns": 22101149,
+        "init_ns": 3943,
+        "first_call_ns": 14917
+      },
+      {
+        "import_ns": 23722787,
+        "init_ns": 4434,
+        "first_call_ns": 10529
+      },
+      {
+        "import_ns": 23166215,
+        "init_ns": 4045,
+        "first_call_ns": 10196
+      },
+      {
+        "import_ns": 22041333,
+        "init_ns": 4111,
+        "first_call_ns": 10639
+      },
+      {
+        "import_ns": 22790725,
+        "init_ns": 4588,
+        "first_call_ns": 10683
+      },
+      {
+        "import_ns": 22114505,
+        "init_ns": 3647,
+        "first_call_ns": 17567
+      }
+    ],
+    "cold_start_first_call_mean_ns": 11295.9,
+    "cold_start_import_mean_ns": 23227110.25
+  },
+  "memory": {
+    "ru_maxrss_before_kb": 38648,
+    "ru_maxrss_after_kb": 38648,
+    "ru_maxrss_delta_kb": 0,
+    "iterations": 100000,
+    "note": "ru_maxrss is peak RSS for the whole process, not isolated to this call loop; delta near zero is expected since process() allocates only short-lived objects that are immediately collectible."
+  },
+  "allocations": {
+    "iterations": 20000,
+    "traced_current_bytes": 1384,
+    "traced_peak_bytes": 1384,
+    "avg_bytes_per_call": 0.0692,
+    "top_allocation_sites": [
+      {
+        "file_line": "/usr/lib/python3.12/tracemalloc.py:560",
+        "size_diff_bytes": 312,
+        "count_diff": 2
+      },
+      {
+        "file_line": "/usr/lib/python3.12/tracemalloc.py:423",
+        "size_diff_bytes": 312,
+        "count_diff": 2
+      }
+    ]
+  }
+}

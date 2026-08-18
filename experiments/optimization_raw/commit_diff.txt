@@ -1,0 +1,27 @@
+5fe3e0cf944721b0f804b9aa798f865c7503ebf2
+perf: replace Decision dataclass with NamedTuple
+
+
+diff --git a/src/ppm_edge/runtime.py b/src/ppm_edge/runtime.py
+index ced6bbb..8ee9b5c 100644
+--- a/src/ppm_edge/runtime.py
++++ b/src/ppm_edge/runtime.py
+@@ -6,7 +6,7 @@ can be used for development, testing, simulation, and integration work.
+ 
+ from dataclasses import dataclass
+ from enum import IntEnum
+-from typing import Optional
++from typing import NamedTuple, Optional
+ 
+ 
+ class Priority(IntEnum):
+@@ -23,8 +23,7 @@ class InputSample:
+     priority: Priority = Priority.NORMAL
+ 
+ 
+-@dataclass(frozen=True)
+-class Decision:
++class Decision(NamedTuple):
+     value: int
+     delta: int
+     protected: bool

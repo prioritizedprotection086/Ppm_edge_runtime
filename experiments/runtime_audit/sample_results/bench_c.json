@@ -1,0 +1,18 @@
+{
+  "suite": "c",
+  "iterations": 100000,
+  "warmup": 5000,
+  "seed": 123,
+  "core_latency": {
+    "min_ns": 19,
+    "mean_ns": 22.95,
+    "p50_ns": 21,
+    "p95_ns": 26,
+    "p99_ns": 33,
+    "p999_ns": 41,
+    "max_ns": 43722,
+    "n": 100000
+  },
+  "heap_allocations_in_ppm_process": 0,
+  "heap_allocation_note": "verified via static grep of Src/Ppm_edge.c: no malloc/calloc/realloc/free calls"
+}

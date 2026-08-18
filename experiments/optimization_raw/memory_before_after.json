@@ -1,0 +1,58 @@
+{
+  "seeds": [
+    123,
+    124,
+    125
+  ],
+  "iterations": 20000,
+  "before_dataclass": [
+    {
+      "ru_maxrss_before_kb": 16900,
+      "ru_maxrss_after_kb": 16900,
+      "ru_maxrss_delta_kb": 0,
+      "traced_peak_bytes": 832,
+      "avg_bytes_per_call": 0.0416
+    },
+    {
+      "ru_maxrss_before_kb": 16900,
+      "ru_maxrss_after_kb": 16900,
+      "ru_maxrss_delta_kb": 0,
+      "traced_peak_bytes": 832,
+      "avg_bytes_per_call": 0.0416
+    },
+    {
+      "ru_maxrss_before_kb": 16864,
+      "ru_maxrss_after_kb": 16864,
+      "ru_maxrss_delta_kb": 0,
+      "traced_peak_bytes": 832,
+      "avg_bytes_per_call": 0.0416
+    }
+  ],
+  "after_namedtuple": [
+    {
+      "ru_maxrss_before_kb": 16840,
+      "ru_maxrss_after_kb": 16840,
+      "ru_maxrss_delta_kb": 0,
+      "traced_peak_bytes": 832,
+      "avg_bytes_per_call": 0.0416
+    },
+    {
+      "ru_maxrss_before_kb": 16864,
+      "ru_maxrss_after_kb": 16864,
+      "ru_maxrss_delta_kb": 0,
+      "traced_peak_bytes": 832,
+      "avg_bytes_per_call": 0.0416
+    },
+    {
+      "ru_maxrss_before_kb": 16900,
+      "ru_maxrss_after_kb": 16900,
+      "ru_maxrss_delta_kb": 0,
+      "traced_peak_bytes": 832,
+      "avg_bytes_per_call": 0.0416
+    }
+  ],
+  "before_avg_bytes_per_call_mean": 0.0416,
+  "after_avg_bytes_per_call_mean": 0.0416,
+  "before_traced_peak_bytes_mean": 832,
+  "after_traced_peak_bytes_mean": 832
+}

@@ -1,0 +1,16 @@
+{
+  "before": {
+    "label": "before_dataclass",
+    "getsizeof_instance_bytes": 48,
+    "has_instance_dict": true,
+    "instance_dict_bytes": 296,
+    "total_bytes": 344
+  },
+  "after": {
+    "label": "after_namedtuple",
+    "getsizeof_instance_bytes": 80,
+    "has_instance_dict": false,
+    "instance_dict_bytes": 0,
+    "total_bytes": 80
+  }
+}

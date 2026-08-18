@@ -1,0 +1,163 @@
+{
+  "config": {
+    "iterations": 100000,
+    "warmup": 5000,
+    "n_trials": 5,
+    "seed_base": 123,
+    "note": "each trial uses seed_base+i so before/after use identical seeds pairwise across the two conditions"
+  },
+  "gc_normal": {
+    "n_trials": 5,
+    "per_trial": [
+      {
+        "n": 100000,
+        "mean_ns": 2541.34765,
+        "stdev_ns": 5556.8097143641235,
+        "p50_ns": 2075,
+        "p95_ns": 3629,
+        "p99_ns": 6453,
+        "p999_ns": 47891,
+        "max_ns": 1300293,
+        "min_ns": 1961,
+        "gc_mode": "normal"
+      },
+      {
+        "n": 100000,
+        "mean_ns": 2294.17211,
+        "stdev_ns": 1557.7570705726414,
+        "p50_ns": 2076,
+        "p95_ns": 3386,
+        "p99_ns": 5329,
+        "p999_ns": 27455,
+        "max_ns": 93883,
+        "min_ns": 1959,
+        "gc_mode": "normal"
+      },
+      {
+        "n": 100000,
+        "mean_ns": 2233.88118,
+        "stdev_ns": 2119.4616883822864,
+        "p50_ns": 2071,
+        "p95_ns": 2298,
+        "p99_ns": 5037,
+        "p999_ns": 26407,
+        "max_ns": 338375,
+        "min_ns": 1958,
+        "gc_mode": "normal"
+      },
+      {
+        "n": 100000,
+        "mean_ns": 2190.73158,
+        "stdev_ns": 6012.551685371894,
+        "p50_ns": 2022,
+        "p95_ns": 2252,
+        "p99_ns": 4747,
+        "p999_ns": 24915,
+        "max_ns": 1847305,
+        "min_ns": 1924,
+        "gc_mode": "normal"
+      },
+      {
+        "n": 100000,
+        "mean_ns": 2291.21505,
+        "stdev_ns": 1467.7280576319338,
+        "p50_ns": 2081,
+        "p95_ns": 3436,
+        "p99_ns": 5159,
+        "p999_ns": 25243,
+        "max_ns": 147858,
+        "min_ns": 1954,
+        "gc_mode": "normal"
+      }
+    ],
+    "across_trials": {
+      "mean_of_means_ns": 2310.269514,
+      "stdev_of_means_ns": 136.14679502965265,
+      "mean_of_p50_ns": 2065,
+      "mean_of_p95_ns": 3000.2,
+      "mean_of_p99_ns": 5345,
+      "mean_of_p999_ns": 30382.2,
+      "stdev_of_p999_ns": 9839.08589250038,
+      "mean_of_max_ns": 745542.8,
+      "max_of_max_ns": 1847305,
+      "min_of_max_ns": 93883
+    }
+  },
+  "gc_disabled": {
+    "n_trials": 5,
+    "per_trial": [
+      {
+        "n": 100000,
+        "mean_ns": 2337.56237,
+        "stdev_ns": 1633.0607499735318,
+        "p50_ns": 2089,
+        "p95_ns": 3604,
+        "p99_ns": 5367,
+        "p999_ns": 29728,
+        "max_ns": 88594,
+        "min_ns": 1960,
+        "gc_mode": "disabled"
+      },
+      {
+        "n": 100000,
+        "mean_ns": 2267.29607,
+        "stdev_ns": 2512.3788809709754,
+        "p50_ns": 2032,
+        "p95_ns": 3332,
+        "p99_ns": 5293,
+        "p999_ns": 30231,
+        "max_ns": 558530,
+        "min_ns": 1932,
+        "gc_mode": "disabled"
+      },
+      {
+        "n": 100000,
+        "mean_ns": 2261.06219,
+        "stdev_ns": 6231.591411172395,
+        "p50_ns": 2083,
+        "p95_ns": 2327,
+        "p99_ns": 5124,
+        "p999_ns": 25444,
+        "max_ns": 1891854,
+        "min_ns": 1947,
+        "gc_mode": "disabled"
+      },
+      {
+        "n": 100000,
+        "mean_ns": 2277.45907,
+        "stdev_ns": 1543.0796198485245,
+        "p50_ns": 2071,
+        "p95_ns": 3345,
+        "p99_ns": 5306,
+        "p999_ns": 26491,
+        "max_ns": 104499,
+        "min_ns": 1953,
+        "gc_mode": "disabled"
+      },
+      {
+        "n": 100000,
+        "mean_ns": 2348.15056,
+        "stdev_ns": 1727.9239310984738,
+        "p50_ns": 2086,
+        "p95_ns": 3750,
+        "p99_ns": 5136,
+        "p999_ns": 29697,
+        "max_ns": 133485,
+        "min_ns": 1954,
+        "gc_mode": "disabled"
+      }
+    ],
+    "across_trials": {
+      "mean_of_means_ns": 2298.306052,
+      "stdev_of_means_ns": 41.25789130427928,
+      "mean_of_p50_ns": 2072.2,
+      "mean_of_p95_ns": 3271.6,
+      "mean_of_p99_ns": 5245.2,
+      "mean_of_p999_ns": 28318.2,
+      "stdev_of_p999_ns": 2187.870814284975,
+      "mean_of_max_ns": 555392.4,
+      "max_of_max_ns": 1891854,
+      "min_of_max_ns": 88594
+    }
+  }
+}

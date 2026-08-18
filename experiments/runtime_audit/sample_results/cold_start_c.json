@@ -1,0 +1,9 @@
+{
+  "suite": "c_cold_start",
+  "n_runs": 20,
+  "min_ns": 1081513,
+  "mean_ns": 1169811.5,
+  "p50_ns": 1149816,
+  "max_ns": 1521867,
+  "note": "Full process launch (fork+exec+dynamic link+main) to exit, includes one ppm_process call. This is the realistic cold-start cost for e.g. a CLI invocation, not just the function call."
+}

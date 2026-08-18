@@ -1,0 +1,54 @@
+{
+  "variant": "baseline",
+  "property_test": {
+    "trials": 20000,
+    "steps": 20,
+    "total_checks": 400000,
+    "failures": 0
+  },
+  "differential_test": {
+    "runtimes": 500,
+    "steps": 15,
+    "total_steps": 7500,
+    "mismatches": 0
+  },
+  "bench_trials": [
+    {
+      "n": 100000,
+      "mean_ns": 2633.69479,
+      "stdev_ns": 4973.644700381493,
+      "p50_ns": 2087,
+      "p95_ns": 3961,
+      "p99_ns": 6727,
+      "p999_ns": 66384,
+      "min_ns": 1967,
+      "max_ns": 813042
+    },
+    {
+      "n": 100000,
+      "mean_ns": 2319.1705,
+      "stdev_ns": 2483.9493735530627,
+      "p50_ns": 2070,
+      "p95_ns": 3097,
+      "p99_ns": 5481,
+      "p999_ns": 39041,
+      "min_ns": 1953,
+      "max_ns": 243841
+    },
+    {
+      "n": 100000,
+      "mean_ns": 2175.99843,
+      "stdev_ns": 5716.018285427184,
+      "p50_ns": 2022,
+      "p95_ns": 2205,
+      "p99_ns": 4686,
+      "p999_ns": 24859,
+      "min_ns": 1924,
+      "max_ns": 1748926
+    }
+  ],
+  "bench_mean_of_means_ns": 2376.287906666667,
+  "bench_mean_of_p50_ns": 2059.6666666666665,
+  "bench_mean_of_p99_ns": 5631.333333333333,
+  "bench_stdev_of_means_ns": 234.13305639647814
+}

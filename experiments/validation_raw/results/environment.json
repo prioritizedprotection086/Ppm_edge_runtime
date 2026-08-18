@@ -1,0 +1,11 @@
+{
+  "captured_at_utc": "2026-08-12T08:14:41Z",
+  "python_version": "3.12.3 (main, Mar  3 2026, 12:15:18) [GCC 13.3.0]",
+  "python_implementation": "CPython",
+  "platform": "Linux-6.18.5-fc-v20-x86_64-with-glibc2.39",
+  "os_release": "Linux vm 6.18.5-fc-v20 #1 SMP PREEMPT_DYNAMIC @0 x86_64 x86_64 x86_64 GNU/Linux",
+  "cpu_model": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+  "cpu_count_logical": 1,
+  "gcc_version": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+  "note": "1 logical CPU sandbox VM (nproc=1) -- NOT a dedicated/isolated perf host. No cpu pinning/isolcpus, no perf governor control available. Absolute ns numbers are not comparable to prior sample_results from a different machine; only within-this-report before/after comparisons on this same host are valid."
+}

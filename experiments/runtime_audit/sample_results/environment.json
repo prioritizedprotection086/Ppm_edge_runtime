@@ -1,0 +1,16 @@
+{
+  "commit_sha": "d9de7236dd65925532e179de800514f76745ec49",
+  "commit_tree_state": "clean",
+  "captured_at_utc": "2026-08-12T07:53:24Z",
+  "python_version": "3.12.3 (main, Mar  3 2026, 12:15:18) [GCC 13.3.0]",
+  "python_implementation": "CPython",
+  "platform": "Linux-6.18.5-fc-v20-x86_64-with-glibc2.39",
+  "os_release": "Linux vm 6.18.5-fc-v20 #1 SMP PREEMPT_DYNAMIC @0 x86_64 x86_64 x86_64 GNU/Linux",
+  "cpu_model": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+  "cpu_count_logical": 1,
+  "gcc_version": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+  "gcc_target": "x86_64-linux-gnu",
+  "compiler_flags_used": "-O2 (see bench/bench_c.c build command)",
+  "glibc_version": "ldd (Ubuntu GLIBC 2.39-0ubuntu8.7) 2.39",
+  "cflags_env": "(unset)"
+}

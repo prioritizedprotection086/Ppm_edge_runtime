@@ -1,0 +1,741 @@
+{
+  "importtime_normal": {
+    "flags": [],
+    "raw_rows": [
+      {
+        "self_us": 1503,
+        "cumulative_us": 1503,
+        "name": "_io"
+      },
+      {
+        "self_us": 45,
+        "cumulative_us": 45,
+        "name": "marshal"
+      },
+      {
+        "self_us": 1936,
+        "cumulative_us": 1936,
+        "name": "posix"
+      },
+      {
+        "self_us": 1289,
+        "cumulative_us": 4770,
+        "name": "_frozen_importlib_external"
+      },
+      {
+        "self_us": 656,
+        "cumulative_us": 656,
+        "name": "time"
+      },
+      {
+        "self_us": 441,
+        "cumulative_us": 1096,
+        "name": "zipimport"
+      },
+      {
+        "self_us": 173,
+        "cumulative_us": 173,
+        "name": "_codecs"
+      },
+      {
+        "self_us": 1326,
+        "cumulative_us": 1499,
+        "name": "codecs"
+      },
+      {
+        "self_us": 4461,
+        "cumulative_us": 4461,
+        "name": "encodings.aliases"
+      },
+      {
+        "self_us": 1687,
+        "cumulative_us": 7646,
+        "name": "encodings"
+      },
+      {
+        "self_us": 338,
+        "cumulative_us": 338,
+        "name": "encodings.utf_8"
+      },
+      {
+        "self_us": 330,
+        "cumulative_us": 330,
+        "name": "_signal"
+      },
+      {
+        "self_us": 122,
+        "cumulative_us": 122,
+        "name": "_abc"
+      },
+      {
+        "self_us": 219,
+        "cumulative_us": 341,
+        "name": "abc"
+      },
+      {
+        "self_us": 256,
+        "cumulative_us": 596,
+        "name": "io"
+      },
+      {
+        "self_us": 55,
+        "cumulative_us": 55,
+        "name": "_stat"
+      },
+      {
+        "self_us": 221,
+        "cumulative_us": 275,
+        "name": "stat"
+      },
+      {
+        "self_us": 2893,
+        "cumulative_us": 2893,
+        "name": "_collections_abc"
+      },
+      {
+        "self_us": 120,
+        "cumulative_us": 120,
+        "name": "genericpath"
+      },
+      {
+        "self_us": 286,
+        "cumulative_us": 406,
+        "name": "posixpath"
+      },
+      {
+        "self_us": 1282,
+        "cumulative_us": 4855,
+        "name": "os"
+      },
+      {
+        "self_us": 168,
+        "cumulative_us": 168,
+        "name": "_sitebuiltins"
+      },
+      {
+        "self_us": 2330,
+        "cumulative_us": 2330,
+        "name": "_distutils_hack"
+      },
+      {
+        "self_us": 1698,
+        "cumulative_us": 1698,
+        "name": "apport_python_hook"
+      },
+      {
+        "self_us": 249,
+        "cumulative_us": 1947,
+        "name": "sitecustomize"
+      },
+      {
+        "self_us": 79,
+        "cumulative_us": 79,
+        "name": "usercustomize"
+      },
+      {
+        "self_us": 2374,
+        "cumulative_us": 11751,
+        "name": "site"
+      },
+      {
+        "self_us": 899,
+        "cumulative_us": 899,
+        "name": "types"
+      },
+      {
+        "self_us": 272,
+        "cumulative_us": 272,
+        "name": "_operator"
+      },
+      {
+        "self_us": 1218,
+        "cumulative_us": 1490,
+        "name": "operator"
+      },
+      {
+        "self_us": 1471,
+        "cumulative_us": 1471,
+        "name": "itertools"
+      },
+      {
+        "self_us": 281,
+        "cumulative_us": 281,
+        "name": "keyword"
+      },
+      {
+        "self_us": 582,
+        "cumulative_us": 582,
+        "name": "reprlib"
+      },
+      {
+        "self_us": 188,
+        "cumulative_us": 188,
+        "name": "_collections"
+      },
+      {
+        "self_us": 5463,
+        "cumulative_us": 7984,
+        "name": "collections"
+      },
+      {
+        "self_us": 237,
+        "cumulative_us": 237,
+        "name": "_functools"
+      },
+      {
+        "self_us": 2472,
+        "cumulative_us": 10692,
+        "name": "functools"
+      },
+      {
+        "self_us": 6751,
+        "cumulative_us": 19829,
+        "name": "enum"
+      },
+      {
+        "self_us": 257,
+        "cumulative_us": 257,
+        "name": "_sre"
+      },
+      {
+        "self_us": 1287,
+        "cumulative_us": 1287,
+        "name": "re._constants"
+      },
+      {
+        "self_us": 2454,
+        "cumulative_us": 3740,
+        "name": "re._parser"
+      },
+      {
+        "self_us": 220,
+        "cumulative_us": 220,
+        "name": "re._casefix"
+      },
+      {
+        "self_us": 2228,
+        "cumulative_us": 6443,
+        "name": "re._compiler"
+      },
+      {
+        "self_us": 2890,
+        "cumulative_us": 2890,
+        "name": "copyreg"
+      },
+      {
+        "self_us": 1165,
+        "cumulative_us": 30326,
+        "name": "re"
+      },
+      {
+        "self_us": 773,
+        "cumulative_us": 773,
+        "name": "_weakrefset"
+      },
+      {
+        "self_us": 3332,
+        "cumulative_us": 4105,
+        "name": "weakref"
+      },
+      {
+        "self_us": 1173,
+        "cumulative_us": 5277,
+        "name": "copy"
+      },
+      {
+        "self_us": 918,
+        "cumulative_us": 918,
+        "name": "_ast"
+      },
+      {
+        "self_us": 2348,
+        "cumulative_us": 2348,
+        "name": "contextlib"
+      },
+      {
+        "self_us": 7469,
+        "cumulative_us": 10734,
+        "name": "ast"
+      },
+      {
+        "self_us": 243,
+        "cumulative_us": 243,
+        "name": "_opcode"
+      },
+      {
+        "self_us": 1499,
+        "cumulative_us": 1742,
+        "name": "opcode"
+      },
+      {
+        "self_us": 2902,
+        "cumulative_us": 4643,
+        "name": "dis"
+      },
+      {
+        "self_us": 326,
+        "cumulative_us": 326,
+        "name": "collections.abc"
+      },
+      {
+        "self_us": 1891,
+        "cumulative_us": 1891,
+        "name": "warnings"
+      },
+      {
+        "self_us": 805,
+        "cumulative_us": 2695,
+        "name": "importlib"
+      },
+      {
+        "self_us": 173,
+        "cumulative_us": 2868,
+        "name": "importlib.machinery"
+      },
+      {
+        "self_us": 651,
+        "cumulative_us": 651,
+        "name": "token"
+      },
+      {
+        "self_us": 96,
+        "cumulative_us": 96,
+        "name": "_tokenize"
+      },
+      {
+        "self_us": 3733,
+        "cumulative_us": 4479,
+        "name": "tokenize"
+      },
+      {
+        "self_us": 582,
+        "cumulative_us": 5061,
+        "name": "linecache"
+      },
+      {
+        "self_us": 10489,
+        "cumulative_us": 34118,
+        "name": "inspect"
+      },
+      {
+        "self_us": 3394,
+        "cumulative_us": 73114,
+        "name": "dataclasses"
+      },
+      {
+        "self_us": 137,
+        "cumulative_us": 137,
+        "name": "_typing"
+      },
+      {
+        "self_us": 11982,
+        "cumulative_us": 12118,
+        "name": "typing"
+      },
+      {
+        "self_us": 9196,
+        "cumulative_us": 94428,
+        "name": "ppm_edge.runtime"
+      },
+      {
+        "self_us": 6992,
+        "cumulative_us": 101419,
+        "name": "ppm_edge"
+      }
+    ],
+    "total_self_us_all_imports": 127976,
+    "ppm_edge_rows": [
+      {
+        "self_us": 9196,
+        "cumulative_us": 94428,
+        "name": "ppm_edge.runtime"
+      },
+      {
+        "self_us": 6992,
+        "cumulative_us": 101419,
+        "name": "ppm_edge"
+      }
+    ],
+    "ppm_edge_self_us": 16188,
+    "ppm_edge_self_us_pct_of_total": 12.649246733762581,
+    "ppm_edge_cumulative_us_incl_deps": 101419,
+    "ppm_edge_cumulative_us_pct_of_total": 79.24845283490654
+  },
+  "importtime_no_site": {
+    "flags": [
+      "-S"
+    ],
+    "raw_rows": [
+      {
+        "self_us": 260,
+        "cumulative_us": 260,
+        "name": "_io"
+      },
+      {
+        "self_us": 36,
+        "cumulative_us": 36,
+        "name": "marshal"
+      },
+      {
+        "self_us": 282,
+        "cumulative_us": 282,
+        "name": "posix"
+      },
+      {
+        "self_us": 329,
+        "cumulative_us": 905,
+        "name": "_frozen_importlib_external"
+      },
+      {
+        "self_us": 107,
+        "cumulative_us": 107,
+        "name": "time"
+      },
+      {
+        "self_us": 161,
+        "cumulative_us": 268,
+        "name": "zipimport"
+      },
+      {
+        "self_us": 49,
+        "cumulative_us": 49,
+        "name": "_codecs"
+      },
+      {
+        "self_us": 315,
+        "cumulative_us": 364,
+        "name": "codecs"
+      },
+      {
+        "self_us": 427,
+        "cumulative_us": 427,
+        "name": "encodings.aliases"
+      },
+      {
+        "self_us": 525,
+        "cumulative_us": 1315,
+        "name": "encodings"
+      },
+      {
+        "self_us": 179,
+        "cumulative_us": 179,
+        "name": "encodings.utf_8"
+      },
+      {
+        "self_us": 164,
+        "cumulative_us": 164,
+        "name": "_signal"
+      },
+      {
+        "self_us": 33,
+        "cumulative_us": 33,
+        "name": "_abc"
+      },
+      {
+        "self_us": 128,
+        "cumulative_us": 161,
+        "name": "abc"
+      },
+      {
+        "self_us": 154,
+        "cumulative_us": 314,
+        "name": "io"
+      },
+      {
+        "self_us": 278,
+        "cumulative_us": 278,
+        "name": "types"
+      },
+      {
+        "self_us": 79,
+        "cumulative_us": 79,
+        "name": "_operator"
+      },
+      {
+        "self_us": 425,
+        "cumulative_us": 504,
+        "name": "operator"
+      },
+      {
+        "self_us": 852,
+        "cumulative_us": 852,
+        "name": "_collections_abc"
+      },
+      {
+        "self_us": 140,
+        "cumulative_us": 140,
+        "name": "itertools"
+      },
+      {
+        "self_us": 189,
+        "cumulative_us": 189,
+        "name": "keyword"
+      },
+      {
+        "self_us": 275,
+        "cumulative_us": 275,
+        "name": "reprlib"
+      },
+      {
+        "self_us": 70,
+        "cumulative_us": 70,
+        "name": "_collections"
+      },
+      {
+        "self_us": 899,
+        "cumulative_us": 2420,
+        "name": "collections"
+      },
+      {
+        "self_us": 56,
+        "cumulative_us": 56,
+        "name": "_functools"
+      },
+      {
+        "self_us": 682,
+        "cumulative_us": 3158,
+        "name": "functools"
+      },
+      {
+        "self_us": 1507,
+        "cumulative_us": 5444,
+        "name": "enum"
+      },
+      {
+        "self_us": 70,
+        "cumulative_us": 70,
+        "name": "_sre"
+      },
+      {
+        "self_us": 336,
+        "cumulative_us": 336,
+        "name": "re._constants"
+      },
+      {
+        "self_us": 406,
+        "cumulative_us": 742,
+        "name": "re._parser"
+      },
+      {
+        "self_us": 221,
+        "cumulative_us": 221,
+        "name": "re._casefix"
+      },
+      {
+        "self_us": 377,
+        "cumulative_us": 1408,
+        "name": "re._compiler"
+      },
+      {
+        "self_us": 167,
+        "cumulative_us": 167,
+        "name": "copyreg"
+      },
+      {
+        "self_us": 521,
+        "cumulative_us": 7539,
+        "name": "re"
+      },
+      {
+        "self_us": 197,
+        "cumulative_us": 197,
+        "name": "_weakrefset"
+      },
+      {
+        "self_us": 423,
+        "cumulative_us": 619,
+        "name": "weakref"
+      },
+      {
+        "self_us": 236,
+        "cumulative_us": 854,
+        "name": "copy"
+      },
+      {
+        "self_us": 1339,
+        "cumulative_us": 1339,
+        "name": "_ast"
+      },
+      {
+        "self_us": 43,
+        "cumulative_us": 43,
+        "name": "_stat"
+      },
+      {
+        "self_us": 72,
+        "cumulative_us": 115,
+        "name": "stat"
+      },
+      {
+        "self_us": 51,
+        "cumulative_us": 51,
+        "name": "genericpath"
+      },
+      {
+        "self_us": 65,
+        "cumulative_us": 116,
+        "name": "posixpath"
+      },
+      {
+        "self_us": 335,
+        "cumulative_us": 565,
+        "name": "os"
+      },
+      {
+        "self_us": 690,
+        "cumulative_us": 1255,
+        "name": "contextlib"
+      },
+      {
+        "self_us": 2289,
+        "cumulative_us": 4881,
+        "name": "ast"
+      },
+      {
+        "self_us": 44,
+        "cumulative_us": 44,
+        "name": "_opcode"
+      },
+      {
+        "self_us": 483,
+        "cumulative_us": 527,
+        "name": "opcode"
+      },
+      {
+        "self_us": 982,
+        "cumulative_us": 1508,
+        "name": "dis"
+      },
+      {
+        "self_us": 179,
+        "cumulative_us": 179,
+        "name": "collections.abc"
+      },
+      {
+        "self_us": 490,
+        "cumulative_us": 490,
+        "name": "warnings"
+      },
+      {
+        "self_us": 214,
+        "cumulative_us": 704,
+        "name": "importlib"
+      },
+      {
+        "self_us": 73,
+        "cumulative_us": 776,
+        "name": "importlib.machinery"
+      },
+      {
+        "self_us": 204,
+        "cumulative_us": 204,
+        "name": "token"
+      },
+      {
+        "self_us": 79,
+        "cumulative_us": 79,
+        "name": "_tokenize"
+      },
+      {
+        "self_us": 1033,
+        "cumulative_us": 1315,
+        "name": "tokenize"
+      },
+      {
+        "self_us": 204,
+        "cumulative_us": 1519,
+        "name": "linecache"
+      },
+      {
+        "self_us": 2829,
+        "cumulative_us": 11690,
+        "name": "inspect"
+      },
+      {
+        "self_us": 890,
+        "cumulative_us": 20972,
+        "name": "dataclasses"
+      },
+      {
+        "self_us": 53,
+        "cumulative_us": 53,
+        "name": "_typing"
+      },
+      {
+        "self_us": 3076,
+        "cumulative_us": 3128,
+        "name": "typing"
+      },
+      {
+        "self_us": 2882,
+        "cumulative_us": 26981,
+        "name": "ppm_edge.runtime"
+      },
+      {
+        "self_us": 224,
+        "cumulative_us": 27204,
+        "name": "ppm_edge"
+      }
+    ],
+    "total_self_us_all_imports": 30378,
+    "ppm_edge_rows": [
+      {
+        "self_us": 2882,
+        "cumulative_us": 26981,
+        "name": "ppm_edge.runtime"
+      },
+      {
+        "self_us": 224,
+        "cumulative_us": 27204,
+        "name": "ppm_edge"
+      }
+    ],
+    "ppm_edge_self_us": 3106,
+    "ppm_edge_self_us_pct_of_total": 10.224504575679768,
+    "ppm_edge_cumulative_us_incl_deps": 27204,
+    "ppm_edge_cumulative_us_pct_of_total": 89.55164921983014
+  },
+  "bare_interpreter_normal_site": {
+    "n": 150,
+    "min_ns": 12998412,
+    "mean_ns": 13970643.746666666,
+    "stdev_ns": 793914.5103186145,
+    "variance_ns2": 630300249694.4454,
+    "p50_ns": 13764806,
+    "p95_ns": 15598641,
+    "p99_ns": 17391194,
+    "max_ns": 18072272
+  },
+  "bare_interpreter_no_site": {
+    "n": 150,
+    "min_ns": 9849713,
+    "mean_ns": 10813676.34,
+    "stdev_ns": 1031563.6160868081,
+    "variance_ns2": 1064123494034.0917,
+    "p50_ns": 10420227,
+    "p95_ns": 13295355,
+    "p99_ns": 14914909,
+    "max_ns": 15109307
+  },
+  "package_import_normal_site": {
+    "n": 150,
+    "min_ns": 41109294,
+    "mean_ns": 44935507.43333333,
+    "stdev_ns": 3426556.5053626415,
+    "variance_ns2": 11741289484443.04,
+    "p50_ns": 44548296,
+    "p95_ns": 49348829,
+    "p99_ns": 55215917,
+    "max_ns": 75884840
+  },
+  "package_overhead_estimate": {
+    "method": "mean(import_cold_start) - mean(bare_interpreter_cold_start), same host, back-to-back trials, normal site initialization for both",
+    "mean_overhead_ns": 30964863.686666664,
+    "p50_overhead_ns": 30783490,
+    "mean_overhead_pct_of_total_import_cold_start": 68.9095671893911
+  },
+  "site_module_overhead_estimate": {
+    "method": "mean(bare interpreter, normal site) - mean(bare interpreter, -S)",
+    "mean_ns": 3156967.4066666663
+  }
+}

@@ -1,0 +1,38 @@
+From a9e6cecf1dc23997786300a1a89cf47721b4cd2e Mon Sep 17 00:00:00 2001
+From: Repo Audit <audit@local>
+Date: Wed, 12 Aug 2026 07:49:40 +0000
+Subject: [PATCH] Remove stray unused Src/Ppm_edge/_init_.py (dead code,
+ case-duplicate of src/ppm_edge)
+
+No functional change. Src/Ppm_edge.c and Src/Ppm_edge.h (the real, CMake-referenced
+C source) are untouched. This only removes an orphaned, misnamed Python file
+that was never imported or referenced by any build target or test.
+---
+ Src/Ppm_edge/_init_.py | 15 ---------------
+ 1 file changed, 15 deletions(-)
+ delete mode 100644 Src/Ppm_edge/_init_.py
+
+diff --git a/Src/Ppm_edge/_init_.py b/Src/Ppm_edge/_init_.py
+deleted file mode 100644
+index 5fea596..0000000
+--- a/Src/Ppm_edge/_init_.py
++++ /dev/null
+@@ -1,15 +0,0 @@
+-from .runtime import (
+-    Decision,
+-    InputSample,
+-    PPMRuntime,
+-    Priority,
+-    RuntimeState,
+-)
+-
+-__all__ = [
+-    "Decision",
+-    "InputSample",
+-    "PPMRuntime",
+-    "Priority",
+-    "RuntimeState",
+-]
+-- 
+2.43.0
+
