@@ -1,0 +1,224 @@
+============================================================
+PPM-Edge Experimental Harness – Phase 12 Vectors A–G
+============================================================
+[A] accepted=52631 path_sum=999989 hit_budget=True
+[B] path_before=49989 accepted_after=0 survived=True
+[C] final_path=49989 never_exceeded=True
+[D] accepted_after_reauth=0 survived=True
+[E] accepted_updates=5 replay_rejected=True pass=True
+[F] final_path=99997 origins_used=3
+[G] accepted=100000 path_sum=100000 exact=True
+============================================================
+SUMMARY
+  A: {"final_state": {"value": 361, "origin": 0, "path_sum": 999989, "origin_budget": 0, "session_id": 0, "used_tokens_count"...
+  B: {"final_state": {"value": 361, "origin": 0, "path_sum": 49989, "origin_budget": 0, "session_id": 1, "used_tokens_count":...
+  C: {"final_state": {"value": 361, "origin": 0, "path_sum": 49989, "origin_budget": 0, "session_id": 0, "used_tokens_count":...
+  D: {"final_state": {"value": -418, "origin": 0, "path_sum": 29982, "origin_budget": 0, "session_id": 0, "used_tokens_count"...
+  E: {"final_state": {"value": 0, "origin": 400, "path_sum": 0, "origin_budget": 0, "session_id": 0, "used_tokens_count": 5},...
+  F: {"final_state": {"value": -19, "origin": 400, "path_sum": 99997, "origin_budget": 0, "session_id": 0, "used_tokens_count...
+  G: {"final_state": {"value": 200, "origin": 0, "path_sum": 100000, "origin_budget": 0, "session_id": 0, "used_tokens_count"...
+{
+  "A": {
+    "config": {
+      "B_global": 1000000,
+      "cum_disp_limit": 500,
+      "authority_delta": 20,
+      "origin_budget": 0,
+      "initial_value": 0,
+      "initial_origin": 0,
+      "allow_origin_updates": false,
+      "path_budget_survives_reset": true
+    },
+    "final_state": {
+      "value": 361,
+      "origin": 0,
+      "path_sum": 999989,
+      "origin_budget": 0,
+      "session_id": 0,
+      "used_tokens_count": 0
+    },
+    "total_events": 52632,
+    "accepted_moves": 52631,
+    "rejected_path": 1,
+    "rejected_spatial": 0,
+    "origin_updates_accepted": 0,
+    "vector": "A_pure_oscillation",
+    "accepted_count": 52631,
+    "path_sum": 999989,
+    "hit_budget": true
+  },
+  "B": {
+    "config": {
+      "B_global": 50000,
+      "cum_disp_limit": 500,
+      "authority_delta": 20,
+      "origin_budget": 0,
+      "initial_value": 0,
+      "initial_origin": 0,
+      "allow_origin_updates": false,
+      "path_budget_survives_reset": true
+    },
+    "final_state": {
+      "value": 361,
+      "origin": 0,
+      "path_sum": 49989,
+      "origin_budget": 0,
+      "session_id": 1,
+      "used_tokens_count": 0
+    },
+    "total_events": 2633,
+    "accepted_moves": 2631,
+    "rejected_path": 2,
+    "rejected_spatial": 0,
+    "origin_updates_accepted": 0,
+    "vector": "B_session_restart",
+    "path_before_restart": 49989,
+    "accepted_after_restart": 0,
+    "budget_survived": true
+  },
+  "C": {
+    "config": {
+      "B_global": 50000,
+      "cum_disp_limit": 500,
+      "authority_delta": 20,
+      "origin_budget": 0,
+      "initial_value": 0,
+      "initial_origin": 0,
+      "allow_origin_updates": false,
+      "path_budget_survives_reset": true
+    },
+    "final_state": {
+      "value": 361,
+      "origin": 0,
+      "path_sum": 49989,
+      "origin_budget": 0,
+      "session_id": 0,
+      "used_tokens_count": 0
+    },
+    "total_events": 4264,
+    "accepted_moves": 4262,
+    "rejected_path": 2,
+    "rejected_spatial": 0,
+    "origin_updates_accepted": 0,
+    "vector": "C_recovery",
+    "path_at_checkpoint": 19000,
+    "path_after_exhaust_before_restore": 49989,
+    "accepted_after_restore": 1631,
+    "final_path": 49989,
+    "never_exceeded": true
+  },
+  "D": {
+    "config": {
+      "B_global": 30000,
+      "cum_disp_limit": 500,
+      "authority_delta": 20,
+      "origin_budget": 0,
+      "initial_value": 0,
+      "initial_origin": 0,
+      "allow_origin_updates": false,
+      "path_budget_survives_reset": true
+    },
+    "final_state": {
+      "value": -418,
+      "origin": 0,
+      "path_sum": 29982,
+      "origin_budget": 0,
+      "session_id": 0,
+      "used_tokens_count": 0
+    },
+    "total_events": 1580,
+    "accepted_moves": 1578,
+    "rejected_path": 2,
+    "rejected_spatial": 0,
+    "origin_updates_accepted": 0,
+    "vector": "D_reauth",
+    "accepted_after_reauth": 0,
+    "budget_survived": true
+  },
+  "E": {
+    "config": {
+      "B_global": 10000000,
+      "cum_disp_limit": 500,
+      "authority_delta": 20,
+      "origin_budget": 5,
+      "initial_value": 0,
+      "initial_origin": 0,
+      "allow_origin_updates": true,
+      "path_budget_survives_reset": true
+    },
+    "final_state": {
+      "value": 0,
+      "origin": 400,
+      "path_sum": 0,
+      "origin_budget": 0,
+      "session_id": 0,
+      "used_tokens_count": 5
+    },
+    "total_events": 11,
+    "accepted_moves": 0,
+    "rejected_path": 0,
+    "rejected_spatial": 0,
+    "origin_updates_accepted": 5,
+    "vector": "E_origin_budget",
+    "replay_rejected": true,
+    "pass": true
+  },
+  "F": {
+    "config": {
+      "B_global": 100000,
+      "cum_disp_limit": 500,
+      "authority_delta": 20,
+      "origin_budget": 3,
+      "initial_value": 0,
+      "initial_origin": 0,
+      "allow_origin_updates": true,
+      "path_budget_survives_reset": true
+    },
+    "final_state": {
+      "value": -19,
+      "origin": 400,
+      "path_sum": 99997,
+      "origin_budget": 0,
+      "session_id": 0,
+      "used_tokens_count": 3
+    },
+    "total_events": 5267,
+    "accepted_moves": 5263,
+    "rejected_path": 1,
+    "rejected_spatial": 0,
+    "origin_updates_accepted": 3,
+    "vector": "F_interleaved",
+    "final_path": 99997,
+    "origin_updates_used": 3,
+    "path_within_budget": true
+  },
+  "G": {
+    "config": {
+      "B_global": 100000,
+      "cum_disp_limit": 500,
+      "authority_delta": 2,
+      "origin_budget": 0,
+      "initial_value": 0,
+      "initial_origin": 0,
+      "allow_origin_updates": false,
+      "path_budget_survives_reset": true
+    },
+    "final_state": {
+      "value": 200,
+      "origin": 0,
+      "path_sum": 100000,
+      "origin_budget": 0,
+      "session_id": 0,
+      "used_tokens_count": 0
+    },
+    "total_events": 100001,
+    "accepted_moves": 100000,
+    "rejected_path": 1,
+    "rejected_spatial": 0,
+    "origin_updates_accepted": 0,
+    "vector": "G_tiny_delta",
+    "accepted": 100000,
+    "path_sum": 100000,
+    "exact": true
+  }
+}
