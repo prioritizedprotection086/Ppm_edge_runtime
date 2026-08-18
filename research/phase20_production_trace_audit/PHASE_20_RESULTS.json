@@ -1,0 +1,984 @@
+{
+  "phase": 20,
+  "repo": "/tmp/Ppm_p20",
+  "commit": "55d1cdb08706e0b063e7f55e7c212a11f24538b8",
+  "label": "production-only audit of Ppm_edge_runtime main",
+  "production_flags": {
+    "PRODUCTION_HAS_GLOBAL_PATH_BUDGET": false,
+    "PRODUCTION_HAS_ORIGIN_BUDGET": false,
+    "PRODUCTION_HAS_CHECKPOINTS": false,
+    "PRODUCTION_HAS_RECOVERY": false,
+    "PRODUCTION_HAS_REAUTH": false,
+    "PRODUCTION_HAS_ATOMIC_BUDGET_ACCOUNTING": false
+  },
+  "flag_evidence": {
+    "PRODUCTION_HAS_GLOBAL_PATH_BUDGET": {
+      "value": false,
+      "evidence": "No path_sum/B_global/total_path symbols in Src/Ppm_edge.c, Src/Ppm_edge.h, or src/ppm_edge/runtime.py. ppm_process always updates last_value and fills ppm_output_t; never rejects on cumulative path cost.",
+      "files": [
+        "Src/Ppm_edge.c:ppm_process",
+        "src/ppm_edge/runtime.py:PPMRuntime.process"
+      ]
+    },
+    "PRODUCTION_HAS_ORIGIN_BUDGET": {
+      "value": false,
+      "evidence": "ppm_runtime_t (Src/Ppm_edge.h) has baseline, last_value, threshold, flags, priority only \u2014 no origin or origin_budget. RuntimeState in runtime.py same.",
+      "files": [
+        "Src/Ppm_edge.h:ppm_runtime_t",
+        "src/ppm_edge/runtime.py:RuntimeState"
+      ]
+    },
+    "PRODUCTION_HAS_CHECKPOINTS": {
+      "value": false,
+      "evidence": "Public C API is only ppm_init, ppm_reset, ppm_process, ppm_version (Src/Ppm_edge.h). No checkpoint/serialize/MAC.",
+      "files": [
+        "Src/Ppm_edge.h"
+      ]
+    },
+    "PRODUCTION_HAS_RECOVERY": {
+      "value": false,
+      "evidence": "ppm_reset (Src/Ppm_edge.c) sets last_value=baseline and clears flags. PPMRuntime.reset mirrors that. Not checkpoint high-water recovery.",
+      "files": [
+        "Src/Ppm_edge.c:ppm_reset",
+        "src/ppm_edge/runtime.py:PPMRuntime.reset"
+      ]
+    },
+    "PRODUCTION_HAS_REAUTH": {
+      "value": false,
+      "evidence": "No session_id, epoch, reauth, or token fields in C header or Python runtime.",
+      "files": [
+        "Src/Ppm_edge.h",
+        "src/ppm_edge/runtime.py"
+      ]
+    },
+    "PRODUCTION_HAS_ATOMIC_BUDGET_ACCOUNTING": {
+      "value": false,
+      "evidence": "No version/CAS/path budget. ppm_process performs direct field writes only.",
+      "files": [
+        "Src/Ppm_edge.c:ppm_process"
+      ]
+    }
+  },
+  "matrix": {
+    "THRESHOLD_BOUNDARIES": {
+      "pass": true,
+      "r9": {
+        "value": 9,
+        "delta": 9,
+        "protected": false,
+        "confidence": 75,
+        "priority": 1
+      },
+      "r10": {
+        "value": 10,
+        "delta": 10,
+        "protected": true,
+        "confidence": 50,
+        "priority": 1
+      },
+      "r11": {
+        "value": 11,
+        "delta": 11,
+        "protected": true,
+        "confidence": 50,
+        "priority": 1
+      }
+    },
+    "ZERO_DELTA": {
+      "pass": true,
+      "row": {
+        "value": 42,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      }
+    },
+    "POS_NEG_DELTAS": {
+      "pass": true,
+      "trace": [
+        {
+          "value": 100,
+          "delta": 100,
+          "protected": true,
+          "confidence": 50,
+          "priority": 1
+        },
+        {
+          "value": 90,
+          "delta": 10,
+          "protected": false,
+          "confidence": 75,
+          "priority": 1
+        },
+        {
+          "value": 110,
+          "delta": 20,
+          "protected": true,
+          "confidence": 50,
+          "priority": 1
+        }
+      ]
+    },
+    "INT32_EXTREMES": {
+      "pass": true,
+      "detail": {
+        "max": {
+          "value": 2147483647,
+          "delta": 2147483647,
+          "protected": true,
+          "confidence": 50,
+          "priority": 1
+        },
+        "min": {
+          "value": -2147483648,
+          "delta": 2147483648,
+          "protected": true,
+          "confidence": 50,
+          "priority": 1
+        },
+        "span": {
+          "value": 2147483647,
+          "delta": 4294967295,
+          "protected": true,
+          "confidence": 50,
+          "priority": 1
+        }
+      }
+    },
+    "REPEATED": {
+      "pass": true
+    },
+    "RESET": {
+      "pass": true,
+      "after_reset": {
+        "value": 5,
+        "delta": 5,
+        "protected": false,
+        "confidence": 75,
+        "priority": 1
+      }
+    },
+    "CRITICAL_PRIORITY": {
+      "pass": true,
+      "row": {
+        "value": 1,
+        "delta": 1,
+        "protected": true,
+        "confidence": 75,
+        "priority": 3
+      }
+    },
+    "NEGATIVE_THRESHOLD": {
+      "pass": true,
+      "row": {
+        "value": 1,
+        "delta": 1,
+        "protected": true,
+        "confidence": 50,
+        "priority": 1
+      }
+    },
+    "LONG_RANDOMIZED": {
+      "pass": true,
+      "n": 10000
+    },
+    "C_CMAKE_AND_SANITIZERS": {
+      "pass": true,
+      "demo_ok": true,
+      "asan": true,
+      "plain": true
+    },
+    "PYTHON_C_IDENTICAL_TRACES": {
+      "pass": true,
+      "suites": [
+        "threshold",
+        "zero_delta",
+        "pos_neg",
+        "int32",
+        "critical",
+        "neg_threshold",
+        "reset",
+        "repeated"
+      ]
+    }
+  },
+  "failures": [],
+  "python_c_comparison": [
+    {
+      "suite": "threshold",
+      "i": 0,
+      "match": true,
+      "py": {
+        "value": 0,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      },
+      "c": {
+        "value": 0,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      }
+    },
+    {
+      "suite": "threshold",
+      "i": 1,
+      "match": true,
+      "py": {
+        "value": 9,
+        "delta": 9,
+        "protected": false,
+        "confidence": 75,
+        "priority": 1
+      },
+      "c": {
+        "value": 9,
+        "delta": 9,
+        "protected": false,
+        "confidence": 75,
+        "priority": 1
+      }
+    },
+    {
+      "suite": "threshold",
+      "i": 2,
+      "match": true,
+      "py": {
+        "value": 0,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      },
+      "c": {
+        "value": 0,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      }
+    },
+    {
+      "suite": "threshold",
+      "i": 3,
+      "match": true,
+      "py": {
+        "value": 10,
+        "delta": 10,
+        "protected": true,
+        "confidence": 50,
+        "priority": 1
+      },
+      "c": {
+        "value": 10,
+        "delta": 10,
+        "protected": true,
+        "confidence": 50,
+        "priority": 1
+      }
+    },
+    {
+      "suite": "threshold",
+      "i": 4,
+      "match": true,
+      "py": {
+        "value": 0,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      },
+      "c": {
+        "value": 0,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      }
+    },
+    {
+      "suite": "threshold",
+      "i": 5,
+      "match": true,
+      "py": {
+        "value": 11,
+        "delta": 11,
+        "protected": true,
+        "confidence": 50,
+        "priority": 1
+      },
+      "c": {
+        "value": 11,
+        "delta": 11,
+        "protected": true,
+        "confidence": 50,
+        "priority": 1
+      }
+    },
+    {
+      "suite": "zero_delta",
+      "i": 0,
+      "match": true,
+      "py": {
+        "value": 42,
+        "delta": 42,
+        "protected": true,
+        "confidence": 50,
+        "priority": 1
+      },
+      "c": {
+        "value": 42,
+        "delta": 42,
+        "protected": true,
+        "confidence": 50,
+        "priority": 1
+      }
+    },
+    {
+      "suite": "zero_delta",
+      "i": 1,
+      "match": true,
+      "py": {
+        "value": 42,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      },
+      "c": {
+        "value": 42,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      }
+    },
+    {
+      "suite": "pos_neg",
+      "i": 0,
+      "match": true,
+      "py": {
+        "value": 100,
+        "delta": 100,
+        "protected": true,
+        "confidence": 50,
+        "priority": 1
+      },
+      "c": {
+        "value": 100,
+        "delta": 100,
+        "protected": true,
+        "confidence": 50,
+        "priority": 1
+      }
+    },
+    {
+      "suite": "pos_neg",
+      "i": 1,
+      "match": true,
+      "py": {
+        "value": 90,
+        "delta": 10,
+        "protected": false,
+        "confidence": 75,
+        "priority": 1
+      },
+      "c": {
+        "value": 90,
+        "delta": 10,
+        "protected": false,
+        "confidence": 75,
+        "priority": 1
+      }
+    },
+    {
+      "suite": "pos_neg",
+      "i": 2,
+      "match": true,
+      "py": {
+        "value": 110,
+        "delta": 20,
+        "protected": true,
+        "confidence": 50,
+        "priority": 1
+      },
+      "c": {
+        "value": 110,
+        "delta": 20,
+        "protected": true,
+        "confidence": 50,
+        "priority": 1
+      }
+    },
+    {
+      "suite": "critical",
+      "i": 0,
+      "match": true,
+      "py": {
+        "value": 0,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      },
+      "c": {
+        "value": 0,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      }
+    },
+    {
+      "suite": "critical",
+      "i": 1,
+      "match": true,
+      "py": {
+        "value": 1,
+        "delta": 1,
+        "protected": true,
+        "confidence": 75,
+        "priority": 3
+      },
+      "c": {
+        "value": 1,
+        "delta": 1,
+        "protected": true,
+        "confidence": 75,
+        "priority": 3
+      }
+    },
+    {
+      "suite": "neg_threshold",
+      "i": 0,
+      "match": true,
+      "py": {
+        "value": 0,
+        "delta": 0,
+        "protected": true,
+        "confidence": 100,
+        "priority": 1
+      },
+      "c": {
+        "value": 0,
+        "delta": 0,
+        "protected": true,
+        "confidence": 100,
+        "priority": 1
+      }
+    },
+    {
+      "suite": "neg_threshold",
+      "i": 1,
+      "match": true,
+      "py": {
+        "value": 1,
+        "delta": 1,
+        "protected": true,
+        "confidence": 50,
+        "priority": 1
+      },
+      "c": {
+        "value": 1,
+        "delta": 1,
+        "protected": true,
+        "confidence": 50,
+        "priority": 1
+      }
+    },
+    {
+      "suite": "reset",
+      "i": 0,
+      "match": true,
+      "py": {
+        "value": 50,
+        "delta": 50,
+        "protected": true,
+        "confidence": 50,
+        "priority": 1
+      },
+      "c": {
+        "value": 50,
+        "delta": 50,
+        "protected": true,
+        "confidence": 50,
+        "priority": 1
+      }
+    },
+    {
+      "suite": "reset",
+      "i": 1,
+      "match": true,
+      "py": {
+        "value": 5,
+        "delta": 5,
+        "protected": false,
+        "confidence": 75,
+        "priority": 1
+      },
+      "c": {
+        "value": 5,
+        "delta": 5,
+        "protected": false,
+        "confidence": 75,
+        "priority": 1
+      }
+    },
+    {
+      "suite": "repeated",
+      "i": 0,
+      "match": true,
+      "py": {
+        "value": 7,
+        "delta": 7,
+        "protected": true,
+        "confidence": 50,
+        "priority": 1
+      },
+      "c": {
+        "value": 7,
+        "delta": 7,
+        "protected": true,
+        "confidence": 50,
+        "priority": 1
+      }
+    },
+    {
+      "suite": "repeated",
+      "i": 1,
+      "match": true,
+      "py": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      },
+      "c": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      }
+    },
+    {
+      "suite": "repeated",
+      "i": 2,
+      "match": true,
+      "py": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      },
+      "c": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      }
+    },
+    {
+      "suite": "repeated",
+      "i": 3,
+      "match": true,
+      "py": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      },
+      "c": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      }
+    },
+    {
+      "suite": "repeated",
+      "i": 4,
+      "match": true,
+      "py": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      },
+      "c": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      }
+    },
+    {
+      "suite": "repeated",
+      "i": 5,
+      "match": true,
+      "py": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      },
+      "c": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      }
+    },
+    {
+      "suite": "repeated",
+      "i": 6,
+      "match": true,
+      "py": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      },
+      "c": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      }
+    },
+    {
+      "suite": "repeated",
+      "i": 7,
+      "match": true,
+      "py": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      },
+      "c": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      }
+    },
+    {
+      "suite": "repeated",
+      "i": 8,
+      "match": true,
+      "py": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      },
+      "c": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      }
+    },
+    {
+      "suite": "repeated",
+      "i": 9,
+      "match": true,
+      "py": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      },
+      "c": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      }
+    },
+    {
+      "suite": "repeated",
+      "i": 10,
+      "match": true,
+      "py": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      },
+      "c": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      }
+    },
+    {
+      "suite": "repeated",
+      "i": 11,
+      "match": true,
+      "py": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      },
+      "c": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      }
+    },
+    {
+      "suite": "repeated",
+      "i": 12,
+      "match": true,
+      "py": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      },
+      "c": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      }
+    },
+    {
+      "suite": "repeated",
+      "i": 13,
+      "match": true,
+      "py": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      },
+      "c": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      }
+    },
+    {
+      "suite": "repeated",
+      "i": 14,
+      "match": true,
+      "py": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      },
+      "c": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      }
+    },
+    {
+      "suite": "repeated",
+      "i": 15,
+      "match": true,
+      "py": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      },
+      "c": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      }
+    },
+    {
+      "suite": "repeated",
+      "i": 16,
+      "match": true,
+      "py": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      },
+      "c": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      }
+    },
+    {
+      "suite": "repeated",
+      "i": 17,
+      "match": true,
+      "py": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      },
+      "c": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      }
+    },
+    {
+      "suite": "repeated",
+      "i": 18,
+      "match": true,
+      "py": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      },
+      "c": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      }
+    },
+    {
+      "suite": "repeated",
+      "i": 19,
+      "match": true,
+      "py": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      },
+      "c": {
+        "value": 7,
+        "delta": 0,
+        "protected": false,
+        "confidence": 100,
+        "priority": 1
+      }
+    },
+    {
+      "suite": "int32",
+      "i": 0,
+      "match_value_prot": true,
+      "py_delta": 0,
+      "c_delta": 0
+    },
+    {
+      "suite": "int32",
+      "i": 1,
+      "match_value_prot": true,
+      "py_delta": 2147483647,
+      "c_delta": 2147483647
+    },
+    {
+      "suite": "int32",
+      "i": 2,
+      "match_value_prot": true,
+      "py_delta": 0,
+      "c_delta": 0
+    },
+    {
+      "suite": "int32",
+      "i": 3,
+      "match_value_prot": true,
+      "py_delta": 2147483648,
+      "c_delta": 2147483648
+    },
+    {
+      "suite": "int32",
+      "i": 4,
+      "match_value_prot": true,
+      "py_delta": 2147483648,
+      "c_delta": 2147483648
+    },
+    {
+      "suite": "int32",
+      "i": 5,
+      "match_value_prot": true,
+      "py_delta": 4294967295,
+      "c_delta": 4294967295
+    }
+  ],
+  "c_build": {
+    "demo_output": "PPM Edge Runtime\nVersion: 0.2.0\nSignal: 520\nDelta: 20\nProtection: 0\nConfidence: 75\nPriority: 1\n",
+    "asan": {
+      "built": true,
+      "ran": true,
+      "returncode": 0,
+      "build_returncode": 0,
+      "stderr": ""
+    },
+    "plain": {
+      "built": true,
+      "ran": true,
+      "returncode": 0,
+      "build_returncode": 0,
+      "stderr": ""
+    }
+  },
+  "sections": {
+    "A_production_findings": [
+      "Production implements threshold + CRITICAL priority protection; always accepts samples."
+    ],
+    "B_harness_only_phases_13_19": [
+      "B_global, origin budget, checkpoints, reauth, CAS interleavings exist only under research/phase14+ harness."
+    ],
+    "C_unsupported_claims": [
+      "Claims that production enforces global path budget, origin budget, checkpoints, or reauth are unsupported on main."
+    ]
+  },
+  "all_pass": true,
+  "failure_count": 0
+}

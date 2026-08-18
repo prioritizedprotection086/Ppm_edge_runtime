@@ -1,16 +1,11 @@
-# Research (harness-only)
+# Research
 
-Experimental policy, adversarial, and integrity work. **Does not modify the production C/Python kernel.**
+| Path | Role |
+|------|------|
+| `phase20_production_trace_audit/` | **Production** audit of main C/Python runtime |
+| `COMPETITION_SUMMARY.md` | Competition-facing summary (verified claims only) |
+| `PHASES.md` | Phase index |
+| `phase14/` … `phase19/` | Harness-only policy experiments |
+| `phases/`, `archives/`, `harness/`, `chat/` | Earlier research snapshots |
 
-## Layout
-
-| Path | Contents |
-|------|----------|
-| `PHASES.md` | Index of phase status |
-| `phase14/` … `phase19/` | Recent harness phases (B_global, invariants, checkpoints, tokens) |
-| `phases/` | Phase 9–12 reports |
-| `archives/` | Zipped phase packages, full research archive, demo snapshot |
-| `harness/` | Early experimental harness |
-| `chat/` | Session master records |
-
-Results are labeled harness-level only unless a mechanism is shown to exist in production.
+Harness directories do **not** modify production and must not be cited as production guarantees.

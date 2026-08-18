@@ -1,12 +1,10 @@
-# Research phases (harness-only)
+# Research phases
 
-These directories are **experimental harness results**. They do not modify the production C/Python kernel.
+| Phase | Focus | Production impact | Status |
+|------|--------|-------------------|--------|
+| 14–15, 18–19 | FormalPolicy harness (B_global, invariants, checkpoints, tokens, concurrency) | **None** — harness only | ALL_PASS (harness) |
+| **20** | **Production trace audit** (C + Python main) | Documents real kernel only | **ALL_PASS** |
 
-| Phase | Focus | Status |
-|------|--------|--------|
-| 14 | FormalPolicy + non-replenishable B_global | ALL_PASS |
-| 15 | Adversarial budget/accounting invariants | ALL_PASS |
-| 18 | Checkpoint / state serialization integrity | ALL_PASS |
-| 19 | Auth token replay / capability windows | ALL_PASS |
+Phase 20 artifacts: `research/phase20_production_trace_audit/`.
 
-Earlier adversarial policy archives live under `research/archives/` and `experiments/`.
+Do not treat harness phases as production security properties. See `COMPETITION_SUMMARY.md`.
