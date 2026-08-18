@@ -1,0 +1,49 @@
+{
+  "phase": 19,
+  "label": "harness-level only \u2014 not a claim against production C kernel",
+  "config": {
+    "b_global": 50000,
+    "seed": 19,
+    "max_updates_per_epoch": 3
+  },
+  "matrix": {
+    "TOKEN_ISSUE_AND_USE": {
+      "pass": true
+    },
+    "TOKEN_REPLAY": {
+      "pass": true
+    },
+    "UNKNOWN_FORGED_TOKEN": {
+      "pass": true
+    },
+    "DOUBLE_SPEND": {
+      "pass": true
+    },
+    "EPOCH_LIMIT": {
+      "pass": true,
+      "updates": 5,
+      "epoch": 2
+    },
+    "REAUTH_NO_REPLENISH": {
+      "pass": true
+    },
+    "REJECTED_NO_CONSUME": {
+      "pass": true
+    },
+    "BUDGET_EXHAUSTED": {
+      "pass": true
+    },
+    "PATH_INVARIANTS": {
+      "pass": true,
+      "final_path": 1000
+    },
+    "RANDOMIZED_TOKEN_OPS": {
+      "pass": true,
+      "operations": 10000,
+      "seed": 19
+    }
+  },
+  "failures": [],
+  "all_pass": true,
+  "failure_count": 0
+}

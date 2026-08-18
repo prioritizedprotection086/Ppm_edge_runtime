@@ -1,0 +1,77 @@
+{
+  "phase": 15,
+  "config": {
+    "b_global": 100000,
+    "authority_delta": 20,
+    "cum_disp_limit": 500,
+    "seed": 42
+  },
+  "matrix": {
+    "EXACT_BOUNDARY": {
+      "pass": true,
+      "path_sum": 100000,
+      "at_boundary": true,
+      "next_rejected": true
+    },
+    "OVERSHOOT": {
+      "pass": true,
+      "path_unchanged_on_reject": true,
+      "reject_reason": "b_global"
+    },
+    "REJECTED_MOVE_ACCOUNTING": {
+      "pass": true,
+      "path_sum": 100000,
+      "reject_count": 500
+    },
+    "ORIGIN_UPDATE_LOOP": {
+      "pass": true,
+      "final_path": 3100,
+      "origin_updates": 3000
+    },
+    "REAUTH_LOOP": {
+      "pass": true,
+      "path_mid": 50000,
+      "final_path": 50200,
+      "monotonic": true
+    },
+    "RECOVERY_LOOP": {
+      "pass": true,
+      "path_mid": 33333,
+      "final_path": 33383,
+      "path_preserved_across_reset": true
+    },
+    "INTEGER_EDGE_VALUES": {
+      "pass": true,
+      "edges_tested": [
+        0,
+        1,
+        99999,
+        100000,
+        100001,
+        2147483647,
+        -2147483648,
+        20,
+        -20,
+        19,
+        -19
+      ]
+    },
+    "ORIGIN_AND_PATH_COMBINATION": {
+      "pass": true,
+      "final_path": 2100,
+      "ops": 405
+    },
+    "RANDOMIZED_SEQUENCE": {
+      "pass": true,
+      "operations": 10000,
+      "final_path": 44881,
+      "seed": 42
+    },
+    "STATE_CONSISTENCY": {
+      "pass": true
+    }
+  },
+  "failures": [],
+  "all_pass": true,
+  "failure_count": 0
+}

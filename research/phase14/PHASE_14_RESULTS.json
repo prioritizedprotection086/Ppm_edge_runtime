@@ -1,0 +1,212 @@
+{
+  "phase": 14,
+  "config": {
+    "authority_delta": 20,
+    "cum_disp_limit": 500,
+    "b_global": 100000,
+    "origin_update_requires_auth": true,
+    "origin_update_cost": 0,
+    "allow_origin_reset_to_current": true,
+    "allow_full_reset": false,
+    "full_reset_clears_path": false
+  },
+  "attacks": [
+    {
+      "name": "fixed_origin_oscillation_10k",
+      "final_path": 99997,
+      "origin_updates": 0,
+      "events_accepted": 5263,
+      "events_rejected": 4737,
+      "max_excursion": 19,
+      "block_reasons": {
+        "b_global": 4737
+      },
+      "final_origin": 0,
+      "final_value": 19,
+      "fingerprint": "d3f91e4a8eba3034",
+      "path_at_or_under_budget": true
+    },
+    {
+      "name": "min_cost_origin_2000",
+      "final_path": 38000,
+      "origin_updates": 2000,
+      "events_accepted": 2000,
+      "events_rejected": 0,
+      "max_excursion": 38000,
+      "block_reasons": {},
+      "final_origin": 38000,
+      "final_value": 38000,
+      "fingerprint": "db5c406e7effbb2c",
+      "path_at_or_under_budget": true
+    },
+    {
+      "name": "full_budget_replenish_200",
+      "final_path": 98800,
+      "origin_updates": 200,
+      "events_accepted": 5200,
+      "events_rejected": 0,
+      "max_excursion": 98800,
+      "block_reasons": {},
+      "final_origin": 98800,
+      "final_value": 98800,
+      "fingerprint": "9631dc8e7bfd82f8",
+      "path_at_or_under_budget": true
+    },
+    {
+      "name": "origin_denied_2000",
+      "final_path": 494,
+      "origin_updates": 0,
+      "events_accepted": 26,
+      "events_rejected": 1974,
+      "max_excursion": 494,
+      "block_reasons": {
+        "cum_disp": 1974
+      },
+      "final_origin": 0,
+      "final_value": 494,
+      "fingerprint": "c2356b83c2599055",
+      "path_at_or_under_budget": true
+    },
+    {
+      "name": "tiny_chatter_150k",
+      "final_path": 100000,
+      "origin_updates": 0,
+      "events_accepted": 100000,
+      "events_rejected": 50000,
+      "max_excursion": 1,
+      "block_reasons": {
+        "b_global": 50000
+      },
+      "final_origin": 0,
+      "final_value": 0,
+      "fingerprint": "d6cca65acd700ee2",
+      "path_at_or_under_budget": true
+    },
+    {
+      "name": "authority_violation",
+      "final_path": 39,
+      "origin_updates": 0,
+      "events_accepted": 2,
+      "events_rejected": 1,
+      "max_excursion": 39,
+      "block_reasons": {
+        "authority": 1
+      },
+      "final_origin": 0,
+      "final_value": 39,
+      "fingerprint": "9e5bd4be542e0d3b",
+      "path_at_or_under_budget": true
+    },
+    {
+      "name": "spatial_violation",
+      "final_path": 494,
+      "origin_updates": 0,
+      "events_accepted": 26,
+      "events_rejected": 14,
+      "max_excursion": 494,
+      "block_reasons": {
+        "cum_disp": 14
+      },
+      "final_origin": 0,
+      "final_value": 494,
+      "fingerprint": "c21cda40ba3dd91f",
+      "path_at_or_under_budget": true
+    },
+    {
+      "name": "budget_survives_reauth",
+      "final_path": 99997,
+      "origin_updates": 0,
+      "events_accepted": 5263,
+      "events_rejected": 837,
+      "max_excursion": 19,
+      "block_reasons": {
+        "b_global": 837
+      },
+      "final_origin": 0,
+      "final_value": 19,
+      "fingerprint": "6e958426857badc6",
+      "path_at_or_under_budget": true
+    },
+    {
+      "name": "full_budget_replenish_extended",
+      "final_path": 99997,
+      "origin_updates": 207,
+      "events_accepted": 5263,
+      "events_rejected": 119,
+      "max_excursion": 99997,
+      "block_reasons": {
+        "b_global": 119
+      },
+      "final_origin": 99997,
+      "final_value": 99997,
+      "fingerprint": "d84a51f760dad10d",
+      "path_at_or_under_budget": true
+    }
+  ],
+  "honest": [
+    {
+      "name": "honest_short_walk",
+      "final_path": 20,
+      "origin_updates": 0,
+      "events_accepted": 4,
+      "events_rejected": 0,
+      "max_excursion": 10,
+      "block_reasons": {},
+      "final_origin": 0,
+      "final_value": 6,
+      "fingerprint": "d001d79e85cbc4cb",
+      "path_at_or_under_budget": true
+    },
+    {
+      "name": "honest_origin_rebase_10",
+      "final_path": 100,
+      "origin_updates": 10,
+      "events_accepted": 10,
+      "events_rejected": 0,
+      "max_excursion": 100,
+      "block_reasons": {},
+      "final_origin": 100,
+      "final_value": 100,
+      "fingerprint": "a439dcafdf4b4a0c",
+      "path_at_or_under_budget": true
+    },
+    {
+      "name": "honest_near_budget_oscillation",
+      "final_path": 95000,
+      "origin_updates": 0,
+      "events_accepted": 5000,
+      "events_rejected": 0,
+      "max_excursion": 19,
+      "block_reasons": {},
+      "final_origin": 0,
+      "final_value": 0,
+      "fingerprint": "561c5d5666b49511",
+      "path_at_or_under_budget": true
+    }
+  ],
+  "pass_fail": {
+    "fixed_origin_oscillation_10k": true,
+    "min_cost_origin_2000": true,
+    "full_budget_replenish_200": true,
+    "origin_denied_2000": true,
+    "tiny_chatter_150k": true,
+    "authority_violation": true,
+    "spatial_violation": true,
+    "honest_short_walk": true,
+    "honest_origin_rebase_10": true,
+    "honest_near_budget_oscillation": true,
+    "budget_survives_reauth": true,
+    "full_budget_replenish_extended": true
+  },
+  "all_pass": true,
+  "notes": {
+    "path_per_envelope_cycle": 494,
+    "cycles_to_exceed_b_global": 207,
+    "phase13_comparison": {
+      "full_budget_replenish_200_without_b_global": 98800,
+      "full_budget_replenish_extended_with_b_global": 99997,
+      "b_global_rejects": 119
+    },
+    "conclusion": "Non-replenishable B_global closes the Phase-13 origin-rebase path growth attack. Origin updates no longer allow unbounded \u03a3|\u0394|. Honest traffic under budget is unaffected."
+  }
+}
